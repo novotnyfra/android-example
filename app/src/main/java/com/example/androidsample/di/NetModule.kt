@@ -1,7 +1,7 @@
 package com.example.androidsample.di
 
 import com.example.androidsample.BuildConfig
-import com.example.androidsample.data.remote.ExampleApi
+import com.example.androidsample.data.remote.UserApi
 import com.example.androidsample.data.resource.LiveDataCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
@@ -25,11 +25,11 @@ val netModule = module {
     single { createAuthInterceptor() }
 
     // DemoApp API service
-    single { createWebService<ExampleApi>(get(), get(), get(), BuildConfig.API_BASE_URL) }
+    single { createWebService<UserApi>(get(), get(), get(), BuildConfig.API_BASE_URL) }
 
 }
 
-fun createMoshi() = Moshi.Builder()
+fun createMoshi(): Moshi = Moshi.Builder()
     // ... add your own JsonAdapters and factories ...
     .add(KotlinJsonAdapterFactory())
     .add(Date::class.java, Rfc3339DateJsonAdapter().nullSafe())

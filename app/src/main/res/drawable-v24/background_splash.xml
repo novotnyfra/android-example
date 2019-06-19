@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+
+    <item android:drawable="@color/white"/>
+
+    <!--TODO splash screen bitmap-->
+    <!-- use raster bitmap -->
+    <item>
+        <bitmap
+            android:src="@drawable/ic_android"
+            android:tint="@color/colorPrimary"
+            android:gravity="center"/>
+    </item>
+
+</layer-list>

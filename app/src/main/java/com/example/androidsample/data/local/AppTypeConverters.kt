@@ -9,21 +9,20 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object AppTypeConverters {
 
-    val moshi = Moshi
-            .Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+    private val moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     // converters for MutableList<String>
     @TypeConverter
     @JvmStatic
     fun restoreStringsList(listOfString: String): MutableList<String>?
-            = moshi.adapter(mutableListOf<String>()::class.java).fromJson(listOfString)
+            = moshi.adapter<MutableList<String>>(Object::class.java).fromJson(listOfString)
 
     @TypeConverter
     @JvmStatic
     fun saveStringsList(listOfString: MutableList<String>): String {
-        val jsonAdapter: JsonAdapter<MutableList<String>> = moshi.adapter(Types.newParameterizedType(mutableListOf<String>()::class.java))
+        val jsonAdapter = moshi.adapter<MutableList<String>>(Object::class.java)
         return jsonAdapter.toJson(listOfString)
     }
 

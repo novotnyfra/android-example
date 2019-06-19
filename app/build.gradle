@@ -23,13 +23,13 @@ android {
         staging {
             applicationId 'com.example.androidexamplestag'
             manifestPlaceholders = [appName: "@string/app_name"]
-            buildConfigField "String", 'API_BASE_URL', "\"https://api.com/\""
+            buildConfigField "String", 'API_BASE_URL', "\"https://5b20d6bfca762000147b2655.mockapi.io/api/\""
             dimension "version"
         }
         production {
             applicationId 'com.example.androidsample'
             manifestPlaceholders = [appName: "@string/app_name"]
-            buildConfigField "String", 'API_BASE_URL', "\"https://api.com/\""
+            buildConfigField "String", 'API_BASE_URL', "\"https://5b20d6bfca762000147b2655.mockapi.io/api/\""
             dimension "version"
         }
     }
@@ -87,5 +87,7 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
+
+    implementation 'com.google.android:flexbox:1.1.0'
 
 }
