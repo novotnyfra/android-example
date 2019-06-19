@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.example.androidexample"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled = true
+    }
+    flavorDimensions "version"
+    productFlavors {
+        staging {
+            applicationId 'com.example.androidexamplestag'
+            manifestPlaceholders = [appName: "@string/app_name"]
+            buildConfigField "String", 'API_BASE_URL', "\"https://api.com/\""
+            dimension "version"
+        }
+        production {
+            applicationId 'com.example.androidexample'
+            manifestPlaceholders = [appName: "@string/app_name"]
+            buildConfigField "String", 'API_BASE_URL', "\"https://api.com/\""
+            dimension "version"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-beta01'
+
+    implementation "androidx.room:room-runtime:2.1.0"
+    kapt "androidx.room:room-compiler:2.1.0"
+
+    //Anko
+    implementation "org.jetbrains.anko:anko:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-design:$ankoVersion"
+
+    // OkHttp, Retrofit and Moshi
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.moshi:moshi:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-adapters:$moshiVersion"
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+
+    // job scheduler
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+
+    // Others
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+
+}
