@@ -1,4 +1,4 @@
-# android-example
+# android-sample
 Simple Android sample using Architecture Components.
 
 ## Built With

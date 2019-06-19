@@ -8,7 +8,7 @@ apply plugin: 'androidx.navigation.safeargs'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.example.androidexample"
+        applicationId "com.example.androidsample"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -27,7 +27,7 @@ android {
             dimension "version"
         }
         production {
-            applicationId 'com.example.androidexample'
+            applicationId 'com.example.androidsample'
             manifestPlaceholders = [appName: "@string/app_name"]
             buildConfigField "String", 'API_BASE_URL', "\"https://api.com/\""
             dimension "version"
